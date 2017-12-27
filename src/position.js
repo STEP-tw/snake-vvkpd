@@ -39,6 +39,10 @@ Position.prototype.isSameCoordAs=function(other) {
   return this.x==other.x && this.y==other.y;
 }
 
+Position.prototype.isSameCoordDifferDirectionAs = function(other){
+  return this.isSameCoordAs(other) && this.direction != other.direction;
+}
+
 Position.prototype.getCoord=function() {
   return [this.x,this.y];
 }
