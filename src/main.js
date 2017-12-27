@@ -5,54 +5,32 @@ let numberOfCols=120;
 
 let animator=undefined;
 
-const isNotTouchedGrid = function(head){
-  return head.x >= 0 && head.x <= numberOfCols && head.y >= 0 && head.y <= numberOfRows;
-}
-
-const isSnakeEatingItself = function(snake,head){
-  return snake.getBody().some(function(positionOfBody){
-    return head.isSameCoordDifferDirectionAs(positionOfBody);
-  });
-}
-
 const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
   let head=snake.getHead();
-  if (isNotTouchedGrid(head)) {
-    paintBody(oldHead);
-    unpaintSnake(oldTail);
-    paintHead(head);
-    if (isSnakeEatingItself(snake,head)) {
-      stopGame();
-    }
-    if(head.isSameCoordAs(food)) {
-      snake.grow();
-      createFood(numberOfRows,numberOfCols);
-      drawFood(food);
-    }
-  } else {
-    stopGame();
+  paintBody(oldHead);
+  unpaintSnake(oldTail);
+  paintHead(head);
+  gameOverChecking();
+  if(head.isSameCoordAs(food)) {
+    snake.grow();
+    createFood(numberOfRows,numberOfCols);
+    drawFood(food);
   }
-}
-
-const stopGame = function(){
-  clearInterval(animator);
-  document.getElementById("hidden_tail").style="visibility:visible";
-  playAgain.focus();
 }
 
 const changeSnakeDirection=function(event) {
   switch (event.code) {
     case "KeyA":
-      snake.turnLeft();
-      break;
+    snake.turnLeft();
+    break;
     case "KeyD":
-      snake.turnRight();
-      break;
+    snake.turnRight();
+    break;
     case "KeyC":
-      snake.grow();
-      break;
+    snake.grow();
+    break;
     default:
   }
 }
