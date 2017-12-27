@@ -9,10 +9,10 @@ const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
   let head=snake.getHead();
+  gameOverChecking(numberOfCols,numberOfRows);
   paintBody(oldHead);
   unpaintSnake(oldTail);
   paintHead(head);
-  gameOverChecking();
   if(head.isSameCoordAs(food)) {
     snake.grow();
     createFood(numberOfRows,numberOfCols);

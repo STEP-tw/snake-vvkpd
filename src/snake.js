@@ -29,5 +29,9 @@ Snake.prototype={
     return this.body.some(function(positionOfBody){
       return headPart.isSameCoordAs(positionOfBody);
     });
+  },
+  isSnakeTouchedTheWall: function(numberOfCols,numberOfRows){
+    let headPart = this.getHead();
+    return headPart.isHitTheGrid(numberOfCols,numberOfRows);
   }
 }
