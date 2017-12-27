@@ -5,18 +5,38 @@ let numberOfCols=120;
 
 let animator=undefined;
 
+const isNotTouchedGrid = function(head){
+  return head.x >= 0 && head.x <= numberOfCols && head.y >= 0 && head.y <= numberOfRows;
+}
+
 const animateSnake=function() {
   let oldHead=snake.getHead();
   let oldTail=snake.move();
   let head=snake.getHead();
-  paintBody(oldHead);
-  unpaintSnake(oldTail);
-  paintHead(head);
-  if(head.isSameCoordAs(food)) {
-    snake.grow();
-    createFood(numberOfRows,numberOfCols);
-    drawFood(food);
+  console.log(oldHead);
+  console.log(head.x);
+  if (isNotTouchedGrid(head)) {
+    paintBody(oldHead);
+    unpaintSnake(oldTail);
+    paintHead(head);
+    if(head.isSameCoordAs(food)) {
+      snake.grow();
+      createFood(numberOfRows,numberOfCols);
+      drawFood(food);
+    }
+  } else {
+    stopGame();
   }
+}
+
+const stopGame = function(){
+  clearInterval(animator);
+  document.getElementById("hidden_tail").style="visibility:visible";
+  playAgain.focus();
+}
+
+const playAgain = function(){
+  startGame();
 }
 
 const changeSnakeDirection=function(event) {
