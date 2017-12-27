@@ -24,3 +24,18 @@
   background-color: blue;
   border-radius: 50%;
 }
+
+#hidden_tail {
+  height: 80px;
+  width: 560px;
+  margin: 0 auto;
+  padding-left: 400px;
+  visibility:hidden;
+  font-size: 30px;
+  color: red;
+}
+#playAgain {
+  height: 30px;
+  width: 150px;
+  font-size: 22px;
+}
